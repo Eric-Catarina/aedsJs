@@ -7,89 +7,69 @@ class Stack {
         this.items = [];
     }
 
+    PushEnd = (...numbers) => {
+       this.items.push(...numbers)
 
-
-
-    Sum = () => this.items.reduce((anterior, proximo) => anterior + proximo)
-
-    Multiply = () => this.items.reduce((anterior, proximo) => anterior * proximo)
-
-    PushEnd = (...elements) => {
-        if (elements.length > 1) {
-            this.items = [...this.items, ...elements];
-        }
-        else {
-            this.items[this.items.length] = elements
-        }
+        
     }
 
-    PopEnd = () =>{
-       let removedElement = this.items[this.items.length - 1];
-       this.items.length -=1;
-       return removedElement;
+    PopEnd =  () => {
+        let poppedItem = this.items[this.items.length - 1]
+        this.items.pop()
+        return poppedItem
+
     }
-    PeekEnd = () => this.items[this.items.length -1 ]
-   
+
+    Seek = () => {
+        return this.items[this.items.length-1]
+    }
+
+    Size = () => {
+        return this.items.length
+    }
+
+    ToString = () => {
+        let myStringStack = new Stack
+        let count = this.items.length
+        for (let i =0; i < count;i ++){
+            myStringStack.PushEnd(this.PopEnd())        
+        }
+        return myStringStack.items
+    }
+
 }
 
-ToBinary = (number) => {
-    let binaryNumber = new Stack;
-
-    let rest = number % 2
-    let product = number / 2
+ToBinary = (number) =>{
+    let myBinaryStack = new Stack
+    let rest
+    let quocient
 
     do {
-        if (rest == 0){
-            let rest = number % 2
-    let product = number / 2
-
-            binaryNumber.PushEnd(0)
-            number = product
-
+        quocient = Math.floor(number/2)
+        rest = Math.floor( number % 2)
+        if ( rest == 0 ){
+            myBinaryStack.PushEnd(0)
         }
         else{
-            let rest = number % 2
-    let product = number / 2
-
-            binaryNumber.PushEnd(1)
-            number = product
-
+            myBinaryStack.PushEnd(1) 
         }
-
+        number = quocient
     }
-    while(product >=1);
+    while(number > 0)
 
-    return binaryNumber.items
-    
-}
-ToBinary = (number) => {
-    myStack = new Pilha
-    invertedStack = new Pilha
 
-    let quotient
-    let rest
-    do{
-        rest = number % 2
-        quotient = number / 2
-        number = quotient
-        if (rest >= 1){
-            myStack.PushEnd(1)
-        }
-        else{
-            myStack.PushEnd(0)
-        }
-    }while(quotient >= 1)
-
-    myStackLength = myStack.items.length
-
-    for (let i =0; i < myStackLength; i ++){
-        invertedStack.PushEnd(myStack.PopEnd())
-    }
-    return invertedStack.items
+return myBinaryStack.items.reverse()
 }
 
+let myStack = new Stack
 
-
-let minhaPilha = new Stack;
-
+myStack.PushEnd(1,2)
 console.log(ToBinary(10))
+/*
+
+let binaryNumber = ToBinary(10)
+
+myStack.PushEnd(binaryNumber)
+
+console.log(myStack.ToString())
+*/
