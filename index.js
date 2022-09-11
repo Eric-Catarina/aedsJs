@@ -8,54 +8,46 @@ class Stack {
     }
 
     PushEnd = (...numbers) => {
-       this.items.push(...numbers)
-
-        
+        this.items.push(...numbers)
     }
 
-    PopEnd =  () => {
+    PopEnd = () => {
         let poppedItem = this.items[this.items.length - 1]
         this.items.pop()
         return poppedItem
-
     }
 
     Seek = () => {
-        return this.items[this.items.length-1]
+        return           this.items[this.items.length - 1]
     }
 
     Size = () => {
-        return this.items.length
+        return           this.items.length
     }
 }
 
-ToBinary = (number, base) =>{
+BaseConverter = (number, base) => {
+
     let myBinaryStack = new Stack
     let rest
     let quocient
 
+    let digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
     do {
-        quocient = Math.floor(number/base)
-        rest = Math.floor( number % base)
-        
-        myBinaryStack.PushEnd(res)
+        quocient = Math.floor (number / base)
+
+        rest     = Math.floor (number % base)
+
+        myBinaryStack.PushEnd(digits[rest])
         number = quocient
     }
-    while(number > 0)
+    while (number > 0)
 
-
-return myBinaryStack.items.reverse()
+    return myBinaryStack.items.reverse()
 }
 
 let myStack = new Stack
 
-myStack.PushEnd(1,2)
-console.log(ToBinary(100345,8))
-/*
+console.log(BaseConverter(100345, 35))
 
-let binaryNumber = ToBinary(10)
-
-myStack.PushEnd(binaryNumber)
-
-console.log(myStack.ToString())
-*/
