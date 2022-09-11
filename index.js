@@ -27,32 +27,18 @@ class Stack {
     Size = () => {
         return this.items.length
     }
-
-    ToString = () => {
-        let myStringStack = new Stack
-        let count = this.items.length
-        for (let i =0; i < count;i ++){
-            myStringStack.PushEnd(this.PopEnd())        
-        }
-        return myStringStack.items
-    }
-
 }
 
-ToBinary = (number) =>{
+ToBinary = (number, base) =>{
     let myBinaryStack = new Stack
     let rest
     let quocient
 
     do {
-        quocient = Math.floor(number/2)
-        rest = Math.floor( number % 2)
-        if ( rest == 0 ){
-            myBinaryStack.PushEnd(0)
-        }
-        else{
-            myBinaryStack.PushEnd(1) 
-        }
+        quocient = Math.floor(number/base)
+        rest = Math.floor( number % base)
+        
+        myBinaryStack.PushEnd(res)
         number = quocient
     }
     while(number > 0)
@@ -64,7 +50,7 @@ return myBinaryStack.items.reverse()
 let myStack = new Stack
 
 myStack.PushEnd(1,2)
-console.log(ToBinary(10))
+console.log(ToBinary(100345,8))
 /*
 
 let binaryNumber = ToBinary(10)
