@@ -1,18 +1,19 @@
-class Queue {
+export default class Queue {
     constructor(){
         this.items = [];
     }
     PushStart =(...numbers) =>{
         this.items.unshift(...numbers)
+    }
+    PopStart = () => {
+        let poppedItem = this.items[0]
+        this.items.shift()
+        return poppedItem
+    }
 
+    Peek = () => {
+        return this.items[0]
     }
     
 }
 
-myQueue = new Queue
-myQueue.PushStart(1,2,3)
-myQueue.PushStart(4)
-myQueue.PushStart(-1,0)
-
-
-console.log(myQueue.items)

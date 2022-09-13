@@ -47,7 +47,3 @@ BaseConverter = (number, base) => {
     return myBinaryStack.items.reverse()
 }
 
-let myStack = new Stack
-
-console.log(BaseConverter(100345, 35))
-
