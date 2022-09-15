@@ -47,13 +47,13 @@ class LinkedList {
     }
 
     insertAt = (index, element) => {
-        let currentNode = this.head
+        let node = new Node
         let previousNode
-        if (index === 0){
-            this.head = element
-        }
+        
 
 
+
+        this.count ++
     }
 
     toString = () => {
@@ -84,7 +84,6 @@ myList.push("b")
 myList.push("c")
 myList.removeAt(1)
 
-console.log(myList.getElementAt(1))
 
 
 
