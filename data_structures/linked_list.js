@@ -18,9 +18,9 @@ class LinkedList {
         else{
             currentNode = this.head
             while(currentNode.next != null){ // Travels along all the list until the last node
+                console.log(currentNode)
 
                 currentNode = currentNode.next
-                console.log(currentNode)
 
             }
             currentNode.next = node // When arriving the last node, assign the final node.next as the new Node
@@ -41,7 +41,6 @@ class LinkedList {
     }
 }
 
-
 class Node {
     constructor (element){
         this.element = element;
@@ -53,12 +52,10 @@ class Node {
 myList = new LinkedList
 myListTwo = new LinkedList
 
-
 myList.push("a")
 myList.push("b")
 myList.push("c")
-myList.push("d")
-myList.push("e")
+
 
 
 myList.toString()
