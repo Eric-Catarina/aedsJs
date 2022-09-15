@@ -19,15 +19,21 @@ class LinkedList {
             currentNode = this.head
             while(currentNode.next != null){
                 currentNode = currentNode.next
+                console.log(currentNode)
+
             }
-            currentNode = currentNode.next
+            currentNode.next = node
         }
 
-
         this.count ++
-
     }
+    toString = () => {
+        let currentNode = this.head
 
+        while(currentNode.next != null){
+            currentNode = currentNode.next
+        }
+    }
 }
 
 
@@ -40,7 +46,11 @@ class Node {
 }
 
 myList = new LinkedList
+myListTwo = new LinkedList
 myList.push("a")
 myList.push("b")
 
-console.log(myList.head)
+myList.push("c")
+
+myListTwo.push("a")
+
