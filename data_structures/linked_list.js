@@ -12,19 +12,15 @@ class LinkedList {
         const node = new Node(element)
         let currentNode
         if (this.head == undefined){
-
             this.head = node
         }
         else{
             currentNode = this.head
             while(currentNode.next != null){ // Travels along all the list until the last node
-
                 currentNode = currentNode.next
-
             }
             currentNode.next = node // When arriving the last node, assign the final node.next as the new Node
         }
-
         this.count ++
     }
 
@@ -41,7 +37,26 @@ class LinkedList {
             }
             previousNode.next = currentNode.next
         }
-       this.count --
+        this.count --
+    }
+
+    getElementAt = (index) => {
+        let currentNode = this.head
+        for (let i = 0; i < index; i++) {
+            currentNode = currentNode.next
+        }
+        return currentNode
+        
+    }
+
+    insertAt = (index, element) => {
+        let currentNode = this.head
+        let previousNode
+        if (index === 0){
+            this.head = element
+        }
+
+
     }
 
     toString = () => {
@@ -70,7 +85,8 @@ myListTwo = new LinkedList
 myList.push("a")
 myList.push("b")
 myList.push("c")
-myList.removeAt(1)
+
+console.log(myList.getElementAt(1))
 
 
 
