@@ -18,7 +18,6 @@ class LinkedList {
         else{
             currentNode = this.head
             while(currentNode.next != null){ // Travels along all the list until the last node
-                console.log(currentNode)
 
                 currentNode = currentNode.next
 
@@ -27,6 +26,22 @@ class LinkedList {
         }
 
         this.count ++
+    }
+
+    removeAt = (index) => {
+        let currentNode = this.head
+        let previousNode
+        if (index === 0){
+            this.head = this.head.next
+        }
+        else{
+            for (let i = 0; i < index; i ++){
+                previousNode = currentNode
+                currentNode = currentNode.next
+            }
+            previousNode.next = currentNode.next
+        }
+       this.count --
     }
 
     toString = () => {
@@ -55,6 +70,7 @@ myListTwo = new LinkedList
 myList.push("a")
 myList.push("b")
 myList.push("c")
+myList.removeAt(1)
 
 
 
