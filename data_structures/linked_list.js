@@ -31,11 +31,8 @@ class LinkedList {
             this.head = this.head.next
         }
         else{
-            for (let i = 0; i < index; i ++){
-                previousNode = currentNode
-                currentNode = currentNode.next
-            }
-            previousNode.next = currentNode.next
+            previousNode = this.getElementAt(index - 1)
+            previousNode.next = this.getElementAt(index).next
         }
         this.count --
     }
@@ -85,6 +82,7 @@ myListTwo = new LinkedList
 myList.push("a")
 myList.push("b")
 myList.push("c")
+myList.removeAt(1)
 
 console.log(myList.getElementAt(1))
 
