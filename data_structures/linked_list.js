@@ -25,7 +25,6 @@ class LinkedList {
     }
 
     removeAt = (index) => {
-        let currentNode = this.head
         let previousNode
         if (index === 0){
             this.head = this.head.next
@@ -47,14 +46,42 @@ class LinkedList {
     }
 
     insertAt = (index, element) => {
-        let node = new Node
-        let previousNode
+
+        const node = new Node(element)
+
+        if (index === 0){
+            const current = this.head
+            node.next = current
+            this.head = node
+        }
+        else{
+            const previous = this.getElementAt(index - 1)
+            const current = previous.next
+            node.next = current
+            previous.next = node
+
+        }
         
-
-
-
         this.count ++
     }
+
+    indexOf = (element) => {
+        let currentNode = this.head
+        for(let i = 0; i < this.count && currentNode != null; i++){
+            if(currentNode.element === element){
+                return i
+            }
+            currentNode = currentNode.next
+        }
+        return -1
+    }
+
+    remove(element){
+        let index = this.indexOf(element)
+        return this.removeAt(index)
+
+    }
+
 
     toString = () => {
         let currentNode = this.head
@@ -68,6 +95,7 @@ class LinkedList {
     }
 }
 
+
 class Node {
     constructor (element){
         this.element = element;
@@ -76,15 +104,47 @@ class Node {
 
 }
 
-myList = new LinkedList
-myListTwo = new LinkedList
+class DoublyNode extends Node{
+    constructor(element, next, prev){
+        super(element, next)
+        this.prev = prev
+    }
+    
+}
 
-myList.push("a")
-myList.push("b")
-myList.push("c")
-myList.removeAt(1)
+class DoublyLinkedList extends LinkedList{
+    constructor(){
+        super()
+        this.tail = undefined
+    }
+
+    insertAt = (element, index) => {
+        let previous
+        const node = new DoublyNode(element)
+        let currentNode = this.head
+        if(this.head == null){
+            this.head = node
+            this.tail = node
+        }
+        else{
+            previous = this.getElementAt(index - 1)
+
+            node.next = previous.next
+
+            previous.next = node
+            node.prev = previous
+            console.log("prev :" + node.prev.element   + "         element: "  + node.element  + "         next: "   )
+        }
+    }
+}
+
+myLL = new DoublyLinkedList
+
+myLL.insertAt("a",0)
+myLL.insertAt("b",1)
+myLL.insertAt("c",2)
+myLL.insertAt("d",3)
 
 
 
-
-myList.toString()
+myLL.toString()
