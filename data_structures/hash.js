@@ -153,8 +153,19 @@ class HashTable {
     }
 
     get = (key) => {
-        const valuePair = this.table[this.hashCode(key)]
-        return valuePair == null ? undefined : valuePair.value
+
+        const position = this.hashCode(key)
+        const linkedList = this.table[position]
+
+        if (linkedList != null){
+            let current = linkedList.head
+            while(current != null){
+                if (current.element.key === key){
+                    return current.element.value
+                }
+                current = current.next
+            }
+        }
     }
 
     remove = (key) => {
