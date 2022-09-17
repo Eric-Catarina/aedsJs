@@ -179,23 +179,25 @@ class DoublyLinkedList extends LinkedList{
     }
 }
 
-
-let t0= performance.now(); //start time
-myLL = new DoublyLinkedList
-
-
-for(let i =0; i< 100000; i ++){
-    myLL.insertAt("z", i)
+class SortedLinkedList extends DoublyLinkedList{
+    constructor(){
+        super()
+    }
 }
 
-for (let i = 0; i < 100000; i++){
-    myLL.insertAt("a", 99999 + i)
+const Compare ={
+    LESS_THAN:  -1,
+    BIGGER_THAN: 1
+}
 
+function defaultCompare(a,b){
+    if (a === b){
+        return 0
+    }
+    return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN
 }
 
 
-
-let t1= performance.now(); //end time
-
-console.log('Time taken to execute add function:'+ (t1-t0)/1000 +' seconds');
-
+mySLL = new SortedLinkedList
+mySLL.insertAt("a",0)
+mySLL.toString()
