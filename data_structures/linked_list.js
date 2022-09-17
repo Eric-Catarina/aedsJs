@@ -183,12 +183,13 @@ class DoublyLinkedList extends LinkedList{
 let t0= performance.now(); //start time
 myLL = new DoublyLinkedList
 
+
 for(let i =0; i< 100000; i ++){
     myLL.insertAt("z", i)
 }
 
-for (let i = 0; i < 14000; i++){
-    myLL.removeAt(85000)
+for (let i = 0; i < 100000; i++){
+    myLL.insertAt("a", 99999 + i)
 
 }
 
