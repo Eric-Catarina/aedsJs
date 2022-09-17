@@ -25,10 +25,9 @@ class HashTable {
         if(typeof key === 'number'){
             return key
         }
-        const tableKey = ToString(key)
         let hash = 0
-        for (let i =0; i < tableKey.length; i++){
-            hash += tableKey.charCodeAt(i)
+        for (let i =0; i < key.length; i++){
+            hash += key.charCodeAt(i)
         }
         return hash % 37
     }
@@ -60,9 +59,12 @@ class HashTable {
 }
 
 myHash = new HashTable
-myHash.put("nome", "eric")
 
-myHash.remove("nome")
+myHash.put("Eric", "olhos Verdes")
+myHash.put("Eric", "olhos VerdesDupl")
 
-console.log(myHash.get("eric"))
+myHash.put("Nicolas", "olhos Pretos")
 
+
+
+console.log(myHash.get("Eric"))
