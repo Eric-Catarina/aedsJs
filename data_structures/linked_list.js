@@ -118,11 +118,27 @@ class DoublyLinkedList extends LinkedList{
         this.tail = undefined
     }
 
-    removeAt = (index) => {
-        const previous = this.getElementAt(index - 1)
-        previous.next = previous.next.next
-        previous.next.prev = previous
+    getElementAt = (index) => {
+        if (index <= ~~(this.count / 2)){
+            let current = this.head
+            for (let i = 0; i < index; i++){
+                current = current.next
+            }
+            return current
+        }
+        else{
+            let current = this.tail
+            for (let i = this.count; i > index + 1; i--){
+                current = current.prev
+            }
+            return current
+        }
+    }
 
+    removeAt = (index) => {
+            const previous = this.getElementAt(index - 1)
+            previous.next = previous.next.next
+            previous.next.prev = previous
 
         this.count--
 
@@ -164,17 +180,21 @@ class DoublyLinkedList extends LinkedList{
 }
 
 
-
+let t0= performance.now(); //start time
 myLL = new DoublyLinkedList
 
-myLL.insertAt("a",0)
-myLL.insertAt("b",1)
-myLL.insertAt("c",2)
-myLL.insertAt("e",3)
-myLL.insertAt("d",3)
+for(let i =0; i< 100000; i ++){
+    myLL.insertAt("z", i)
+}
+
+for (let i = 0; i < 14000; i++){
+    myLL.removeAt(85000)
+
+}
 
 
-myLL.removeAt(2)
 
+let t1= performance.now(); //end time
 
-myLL.toString()
+console.log('Time taken to execute add function:'+ (t1-t0)/1000 +' seconds');
+
