@@ -187,4 +187,4 @@ myHash.put("Nicolas", "olhos Pretos")
 
 
 
-console.log(myHash.get("Eric"))
+console.log(myHash.get("Nicolas"))
