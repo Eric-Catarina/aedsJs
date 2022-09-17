@@ -118,9 +118,18 @@ class DoublyLinkedList extends LinkedList{
         this.tail = undefined
     }
 
+    removeAt = (index) => {
+        const previous = this.getElementAt(index - 1)
+        previous.next = previous.next.next
+        previous.next.prev = previous
+
+
+        this.count--
+
+    }
+
     insertAt = (element, index) => {
         const node = new DoublyNode(element)
-        let current = this.head
 
         if (index === 0){
             if (this.head == null){
@@ -133,11 +142,13 @@ class DoublyLinkedList extends LinkedList{
                 this.head = node 
             }
         }
+        
         else if (index === this.count){
             this.tail.next = node
             node.prev = this.tail
             this.tail = node
         }
+
         else{
             const previous = this.indexOf(index - 1)
             node.next = previous.next
@@ -148,6 +159,8 @@ class DoublyLinkedList extends LinkedList{
     }
 }
 
+
+
 myLL = new DoublyLinkedList
 
 myLL.insertAt("a",0)
@@ -155,10 +168,7 @@ myLL.insertAt("b",1)
 myLL.insertAt("c",2)
 myLL.insertAt("d",3)
 
-
-
-
-
+myLL.removeAt(2)
 
 
 myLL.toString()
