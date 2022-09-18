@@ -168,6 +168,7 @@ class HashTable {
         
         while(this.table[position] != null){
             if(this.table[position].key === key ){
+                console.log(position)
                 return this.table[position].value
             }
             position++
@@ -201,10 +202,16 @@ class HashTable {
 
 myHash = new HashTable
 
-myHash.put("Jonathan", "olhos Verdes")
+myHash.put("Jonathan", "olhos Verdes5")
+myHash.put("Jamie", "olhos Verdes5")
 
-myHash.put("Jamie", "olhos Verdes2")
-myHash.put("Sue", "olhos Verdes3")
+myHash.put("Jack", "olhos Verdes7")
+myHash.put("Jasmine", "olhos Verdes8")
+myHash.put("Jake", "olhos Verdes9")
+myHash.put("Nathan", "olhos Verdes10")
 
-console.log(myHash.get("Jamie"))
+
+myHash.put("Sue", "olhos Verdes6")
+
+console.log(myHash.get("Sue"))
 
