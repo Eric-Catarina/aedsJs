@@ -148,19 +148,33 @@ class HashTable {
     put = (key,value) => {
 
         const valuePair = new ValuePair(key,value)
-        const position = this.hashCode(key)
+        let position = this.hashCode(key)
 
-        if (this.table[position != null]){
+        if (this.table[position] != null){
+            while(this.table[position] != null){
+                position ++
+            }
+            this.table[position] = valuePair
             return true
         }
 
         this.table[position] = valuePair
-        
+        return true
     }
 
     get = (key) => {
-        const position = this.hashCode(key)
+
+        let position = this.hashCode(key)
+        
+        while(this.table[position] != null){
+            if(this.table[position].key === key ){
+                return this.table[position].value
+            }
+            position++
+        }
         return this.table[position].value
+
+
     }
 
     remove = (key) => {
@@ -168,7 +182,6 @@ class HashTable {
         const linkedList = this.table[position]
 
         if (linkedList != null){
-
 
             let current = linkedList.getHead()
 
@@ -182,19 +195,16 @@ class HashTable {
                 }    
                 current = current.next
             }
-            
         }
-
     }
-
-
 }
 
 myHash = new HashTable
 
-myHash.put("Eric", "olhos Verdes")
+myHash.put("Jonathan", "olhos Verdes")
 
+myHash.put("Jamie", "olhos Verdes2")
+myHash.put("Sue", "olhos Verdes3")
 
-console.log(myHash.get("Eric"))
-
+console.log(myHash.get("Jamie"))
 
