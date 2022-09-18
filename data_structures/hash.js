@@ -179,25 +179,14 @@ class HashTable {
     }
 
     remove = (key) => {
-        const position = this.hashCode(key)
-        const linkedList = this.table[position]
-
-        if (linkedList != null){
-
-            let current = linkedList.getHead()
-
-            while(current != null){
-                if(current.element.key === key){
-
-                    linkedList.remove(current.element)
-                    if(linkedList.head == null){
-                        delete this.table[position]
-                    }
-                }    
-                current = current.next
-            }
+        let position = this.hashCode(key)
+        while(this.table[position].key != key){
+            position++
         }
+        this.table[position].value = "Deleted, lol, lazy implementation xd"
+
     }
+
 }
 
 myHash = new HashTable
@@ -212,6 +201,8 @@ myHash.put("Nathan", "olhos Verdes10")
 
 
 myHash.put("Sue", "olhos Verdes6")
+
+myHash.remove("Sue")
 
 console.log(myHash.get("Sue"))
 
