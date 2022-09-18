@@ -159,8 +159,8 @@ class HashTable {
 
         if (linkedList != null){
             let current = linkedList.head
-            while(current != null){
-                if (current.element.key === key){
+            while(current!=null){
+                if(current.element.key === key){
                     return current.element.value
                 }
                 current = current.next
@@ -187,4 +187,4 @@ myHash.put("Nicolas", "olhos Pretos")
 
 
 
-console.log(myHash.get("Nicolas"))
+console.log(myHash.get("Eric"))
