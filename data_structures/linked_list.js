@@ -4,6 +4,8 @@ class LinkedList {
         this.head = undefined
     }
 
+   
+
     equalsFn = (a,b) => {
         return a === b
     }

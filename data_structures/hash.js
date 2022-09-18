@@ -1,4 +1,5 @@
 class LinkedList {
+
     constructor(){
         this.count = 0
         this.head = undefined
@@ -6,6 +7,9 @@ class LinkedList {
 
     equalsFn = (a,b) => {
         return a === b
+    }
+    getHead = () => {
+        return this.head
     }
 
     push = (element) =>{
@@ -158,8 +162,11 @@ class HashTable {
         const linkedList = this.table[position]
 
         if (linkedList != null){
+
             let current = linkedList.head
+
             while(current!=null){
+
                 if(current.element.key === key){
                     return current.element.value
                 }
@@ -169,11 +176,27 @@ class HashTable {
     }
 
     remove = (key) => {
-        const hash = this.hashCode(key)
-        const valuePair = this.table[hash]
-        if (valuePair != null){
-            delete this.table[hash]
+        const position = this.hashCode(key)
+        const linkedList = this.table[position]
+
+        if (linkedList != null){
+
+
+            let current = linkedList.getHead()
+
+            while(current != null){
+                if(current.element.key === key){
+
+                    linkedList.remove(current.element)
+                    if(linkedList.head == null){
+                        delete this.table[position]
+                    }
+                }    
+                current = current.next
+            }
+            
         }
+
     }
 
 
@@ -181,10 +204,14 @@ class HashTable {
 
 myHash = new HashTable
 
-myHash.put("Eric", "olhos Verdes")
+myHash.put("Jonathan", "olhos Verdes")
+myHash.put("Jamie", "olhos Verdes22")
+
+myHash.put("Sue", "olhos Verdes33")
+
 
 myHash.put("Nicolas", "olhos Pretos")
 
+myHash.remove("Jamie")
 
-
-console.log(myHash.get("Eric"))
+console.log(myHash.get("Sue"))
