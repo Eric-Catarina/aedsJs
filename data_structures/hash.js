@@ -184,7 +184,6 @@ class HashTable {
             position++
         }
         this.table[position].value = "Deleted, lol, lazy implementation xd"
-
     }
 
 }
