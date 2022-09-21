@@ -23,7 +23,11 @@ class BinarySearchTree {
         }
         else{
             if (node.right == null){
-                node.right == new Node(key)
+
+                node.right = new Node(key)
+                
+                console.log("banana")
+
             }
             else{
                 this.insertNode(node.right, key)
