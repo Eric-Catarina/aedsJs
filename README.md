@@ -1,1 +1,1 @@
-# aedsJs
+# Javascript Library - aedsJs
