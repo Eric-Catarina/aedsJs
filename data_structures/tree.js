@@ -67,6 +67,26 @@ class BinarySearchTree {
         }
     }
 
+    includes = (element) => {
+        return (this.includesRec(this.root, element))
+        
+    }
+
+    includesRec = (node, element) => {
+        if (node == null){
+            return false
+        }
+        
+        if(element < node.key){
+            return this.includesRec(node.left, element)
+        }
+        if( element > node.key){
+            return this.includesRec(node.right, element)
+        }
+        return true
+    }
+
+
 }
 
 class Node {
@@ -97,5 +117,4 @@ myBST.insert(5)
 const printNode = (nodeValue) => console.log(nodeValue)
 
 
-
-myBST.postOrderTraverse(printNode)
+console.log(myBST.includes(5))
