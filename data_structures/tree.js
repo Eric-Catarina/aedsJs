@@ -62,3 +62,4 @@ myBST.insert(4)
 
 
 console.log(myBST.root)
+
