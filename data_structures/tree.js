@@ -40,7 +40,31 @@ class BinarySearchTree {
             callback(node.key)
             this.inOrderTraverseNode(node.right, callback)
         }
+    }
 
+    preOrderTraverse = (callback) => {
+        this.preOrderTraverseNode(this.root,callback)
+    }
+
+    preOrderTraverseNode = (node, callback) => {
+        if(node != null) {
+            callback(node.key)
+            this.preOrderTraverseNode(node.left, callback)
+            this.preOrderTraverseNode(node.right, callback)
+
+        }
+    }
+
+    postOrderTraverse = (callback) => {
+        this.postOrderTraverseNode(this.root,callback)
+    }
+
+    postOrderTraverseNode = (node, callback) => {
+        if(node != null) {
+            this.postOrderTraverseNode(node.left, callback)
+            this.postOrderTraverseNode(node.right, callback)
+            callback(node.key)
+        }
     }
 
 }
@@ -74,4 +98,4 @@ const printNode = (nodeValue) => console.log(nodeValue)
 
 
 
-myBST.inOrderTraverse(printNode)
+myBST.postOrderTraverse(printNode)
