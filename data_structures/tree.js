@@ -76,7 +76,6 @@ class BinarySearchTree {
         if (node == null){
             return false
         }
-        
         if(element < node.key){
             return this.includesRec(node.left, element)
         }
@@ -84,6 +83,55 @@ class BinarySearchTree {
             return this.includesRec(node.right, element)
         }
         return true
+    }
+
+    min = () => {
+        return this.minNode(this.root)
+    }
+    minNode = ( node)  => {
+        let current = node
+        while (current != null && current.left != null){
+            current = current.left
+        }
+        return current
+    }
+
+    remove = (key) => {
+        this.root = this.removeNode(this.root, key)
+    }
+
+    removeNode = (node, key) => {
+        if (node == null){
+            return null
+        }
+        if (key < node.key){
+            node.left = this.removeNode(node.left, key)
+            return node
+        }
+        else if(key > node.key){
+            node.right = this.removeNode(node.right, key)
+            return node
+        }
+        else {
+            if(node.left == null && node.right == null){
+                node = null
+                return node
+            }
+            if (node.left == null){
+                node = node.right
+                return node
+            }
+            else if( node.right == null){
+                node = node.left
+                return node
+            }
+            const aux = this.minNode(node.right)
+            node.key = aux.key
+            node.right = this.removeNode(node.right, aux.key)
+            return node
+
+            
+        }
     }
 
 
@@ -116,5 +164,6 @@ myBST.insert(5)
 
 const printNode = (nodeValue) => console.log(nodeValue)
 
+myBST.remove(0)
 
-console.log(myBST.includes(5))
+myBST.inOrderTraverse(printNode)
