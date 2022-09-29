@@ -179,26 +179,20 @@ class AVL extends BinarySearchTree{
         }
     }
 
-    
 }
 
 myAVL = new AVL
 
-myAVL.insert(11)
-myAVL.insert(7)
-myAVL.insert(5)
-myAVL.insert(9)
 myAVL.insert(3)
+myAVL.insert(2)
 myAVL.insert(6)
-myAVL.insert(8)
-myAVL.insert(10)
-myAVL.insert(15)
-myAVL.insert(13)
-myAVL.insert(12)
-myAVL.insert(14)
-myAVL.insert(20)
-myAVL.insert(18)
-myAVL.insert(25)
+myAVL.insert(5)
+myAVL.insert(4)
+myAVL.insert(7)
+
+
+
+
 
 
 
@@ -206,5 +200,4 @@ myAVL.insert(25)
 
 const printNode = (nodeValue) => console.log(nodeValue)
 
-
-console.log(myAVL.getNodeHeight(myAVL.root.right.right.right.right))
+console.log(myAVL.getBalanceFactor(myAVL.root.right.left))
