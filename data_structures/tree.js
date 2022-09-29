@@ -88,7 +88,7 @@ class BinarySearchTree {
     min = () => {
         return this.minNode(this.root)
     }
-    minNode = ( node)  => {
+    minNode = (node)  => {
         let current = node
         while (current != null && current.left != null){
             current = current.left
@@ -130,11 +130,8 @@ class BinarySearchTree {
             node.right = this.removeNode(node.right, aux.key)
             return node
 
-            
         }
     }
-
-
 }
 
 class Node {
@@ -145,25 +142,69 @@ class Node {
         this.right = null
     }
 }
+const BalanceFactor = {
+    UNBALANCED_RIGHT: 1,
+    SLIGHTLY_UNBALANCED_RIGHT: 2,
+    BALANCED: 3, 
+    SLIGHTLY_UNBALANCED_LEFT: 4,
+    UNBALANCED_LEFT: 5
+};
+
+class AVL extends BinarySearchTree{
+    constructor(){
+        super()
+        this.root = null
+    }
+    getNodeHeight = (node) => {
+        if (node == null){
+            return -1
+        }
+        return Math.max(
+            this.getNodeHeight(node.left), this.getNodeHeight(node.right)
+        ) + 1
+    }
+    getBalanceFactor = (node) =>{
+        const heightDifference = this.getNodeHeight(node.left) - this.getNodeHeight(node.right);
+        switch (heightDifference){
+            case -2:
+                return BalanceFactor.UNBALANCED_RIGHT;
+            case -1:
+                return BalanceFactor.SLIGHTLY_UNBALANCED_RIGHT;
+            case 1: 
+                return BalanceFactor.SLIGHTLY_UNBALANCED_LEFT;
+            case 2:
+                return BalanceFactor.UNBALANCED_LEFT;
+            default:
+                return BalanceFactor.BALANCED;
+        }
+    }
+
+    
+}
+
+myAVL = new AVL
+
+myAVL.insert(11)
+myAVL.insert(7)
+myAVL.insert(5)
+myAVL.insert(9)
+myAVL.insert(3)
+myAVL.insert(6)
+myAVL.insert(8)
+myAVL.insert(10)
+myAVL.insert(15)
+myAVL.insert(13)
+myAVL.insert(12)
+myAVL.insert(14)
+myAVL.insert(20)
+myAVL.insert(18)
+myAVL.insert(25)
 
 
-myBST = new BinarySearchTree
-myBST.insert(3)
-myBST.insert(2)
-myBST.insert(1)
-myBST.insert(1)
 
-
-myBST.insert(0)
-
-myBST.insert(-1)
-myBST.insert(-2)
-myBST.insert(4)
-myBST.insert(5)
 
 
 const printNode = (nodeValue) => console.log(nodeValue)
 
-myBST.remove(0)
 
-myBST.inOrderTraverse(printNode)
+console.log(myAVL.getNodeHeight(myAVL.root.right.right.right.right))
