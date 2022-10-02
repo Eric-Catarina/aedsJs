@@ -178,6 +178,14 @@ class AVL extends BinarySearchTree{
                 return BalanceFactor.BALANCED;
         }
     }
+    rotationLL = (node) => {
+        const tmp = node.left
+        //tmp = 1
+        node.left = tmp.right
+
+        tmp.right = node
+        return tmp
+    }
 
 }
 
@@ -185,13 +193,18 @@ myAVL = new AVL
 
 myAVL.insert(3)
 myAVL.insert(2)
-myAVL.insert(6)
-myAVL.insert(5)
-myAVL.insert(4)
-myAVL.insert(7)
+myAVL.insert(1)
 
 
 
+
+
+console.log(myAVL.root)
+console.log("banana")
+let two = myAVL.root.left
+console.log(two)
+myAVL.rotationLL(myAVL.root)
+console.log(myAVL.root)
 
 
 
@@ -200,4 +213,3 @@ myAVL.insert(7)
 
 const printNode = (nodeValue) => console.log(nodeValue)
 
-console.log(myAVL.getBalanceFactor(myAVL.root.right.left))
