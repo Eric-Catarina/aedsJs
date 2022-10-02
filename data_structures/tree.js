@@ -82,7 +82,7 @@ class BinarySearchTree {
         if( element > node.key){
             return this.includesRec(node.right, element)
         }
-        return true
+        return node
     }
 
     min = () => {
@@ -178,6 +178,12 @@ class AVL extends BinarySearchTree{
                 return BalanceFactor.BALANCED;
         }
     }
+
+    getNodeFromKey = (key) =>{
+        this.preOrderTraverse(
+            printNode
+        )
+    }
     rotationLL = (node) => {
         const tmp = node.left
         //tmp = 1
@@ -188,28 +194,69 @@ class AVL extends BinarySearchTree{
     }
 
 }
+class RedBlackNode extends Node {
+    constructor(key){
+        super(key)
+        this.color = Colors.RED
+        this.parent = null
+    }
+    isRed = () => {
+        return this.color === Colors.RED;
+    }
+}
 
-myAVL = new AVL
+class RedBlackTree extends BinarySearchTree{
+    constructor(){
+        super()
+        this.root = null
+    }
+    insert(key){
+        if (this.root == null){
+            this.root = new RedBlackNode(key)
+            this.root.color = Colors.BLACK
+        }
+        else{
+            const newNode = this.insertNode(this.root, key);
+            this.fixTreeProperties(newNode)
+        }
+    }
 
-myAVL.insert(3)
-myAVL.insert(2)
-myAVL.insert(1)
+    insertNode = (node, key) => {
+        if (key < node.key){
+            if(node.left == null){
+                node.left = new RedBlackNode(key)
+                node.left.parent = node
+                return node.left
+            }
+            else{
+                return this.insertNode(node.left, key)
+            }
+        }
+        else if (node.right == null) {
+            node.right = new RedBlackNode(key)
+            node.right.parent = node
+            return node.right
+        }
+        else {
+            return this.insertNode(node.right,key)
+        }
+        
+    }
+}
 
-
-
-
-
-console.log(myAVL.root)
+myRBT = new RedBlackTree
 console.log("banana")
-let two = myAVL.root.left
-console.log(two)
-myAVL.rotationLL(myAVL.root)
-console.log(myAVL.root)
+
+myRBT.insert(1)
+myRBT.insert(2)
+myRBT.insert(3)
 
 
-
-
+console.log(myRBT.root)
 
 
 const printNode = (nodeValue) => console.log(nodeValue)
+
+
+
 
