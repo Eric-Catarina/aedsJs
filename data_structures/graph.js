@@ -1,12 +1,15 @@
 class LinkedList {
+
     constructor(){
         this.count = 0
         this.head = undefined
     }
 
-
     equalsFn = (a,b) => {
         return a === b
+    }
+    getHead = () => {
+        return this.head
     }
 
     push = (element) =>{
@@ -96,7 +99,6 @@ class LinkedList {
     }
 }
 
-
 class Node {
     constructor (element){
         this.element = element;
@@ -105,79 +107,123 @@ class Node {
 
 }
 
-class DoublyNode extends Node{
-    constructor(element, next, prev){
-        super(element, next)
-        this.prev = prev
+
+ToString = (item) => {
+    if (item === null){
+        return ''
     }
-    
+    else if (item === undefined){
+        return 'UNDEFINED'
+    }
+    else if (typeof item === 'string' || item instanceof String){
+        return '$item'
+    }
+    return item.toString();
 }
 
-class DoublyLinkedList extends LinkedList{
+class ValuePair {
+    constructor (key, value){
+        this.key = key
+        this.value = value
+    }
+}
+class HashTable {
     constructor(){
-        super()
-        this.tail = undefined
+        this.table = {}
+    }
+    loseloseHash = (key) =>{
+        if(typeof key === 'number'){
+            return key
+        }
+        let hash = 0
+        for (let i =0; i < key.length; i++){
+            hash += key.charCodeAt(i)
+        }
+        return hash % 37
+    }
+    hashCode= (key) => {
+        return this.loseloseHash(key)
     }
 
-    getElementAt = (index) => {
-        if (index <= ~~(this.count / 2)){
-            let current = this.head
-            for (let i = 0; i < index; i++){
-                current = current.next
+    put = (key,value) => {
+
+        const valuePair = new ValuePair(key,value)
+        let position = this.hashCode(key)
+
+        if (this.table[position] != null){
+            while(this.table[position] != null){
+                position ++
             }
-            return current
+            this.table[position] = valuePair
+            return true
         }
-        else{
-            let current = this.tail
-            for (let i = this.count; i > index + 1; i--){
-                current = current.prev
-            }
-            return current
-        }
+
+        this.table[position] = valuePair
+        return true
     }
 
-    removeAt = (index) => {
-            const previous = this.getElementAt(index - 1)
-            previous.next = previous.next.next
-            previous.next.prev = previous
+    get = (key) => {
 
-        this.count--
-
-    }
-
-    insertAt = (element, index) => {
-
-        const node = new DoublyNode(element)
-
-        if (index === 0){
-            if (this.head == null){
-                this.head = node
-                this.tail = node
-
-            }
-            else{
-                node.next = this.head
-                this.head.prev = node
-                this.head = node 
-                
-            }
-        }
+        let position = this.hashCode(key)
         
-        else if (index === this.count){
-
-            this.tail.next = node
-            node.prev = this.tail
-            this.tail = node
+        while(this.table[position] != null){
+            if(this.table[position].key === key ){
+                return this.table[position].value
+            }
+            position++
         }
+        return this.table[position].value
 
-        else{
-            const previous = this.getElementAt(index - 1)
-            node.next = previous.next
-            previous.next = node
-            node.prev = previous
-        }
-        this.count ++
+
     }
+
+    remove = (key) => {
+        let position = this.hashCode(key)
+        while(this.table[position].key != key){
+            position++
+        }
+        this.table[position].value = "Deleted, lol, lazy implementation xd"
+    }
+
 }
 
 
+
+class Graph {
+    constructor(isDirected = false){
+        this.isDirected = isDirected
+        this.vertices = []
+        this.adjList = []
+    }
+    addVertex = (v) =>{
+        if(!this.vertices.includes(v)){
+            this.vertices.push(v)
+            this.adjList.push(v)
+        }
+    }
+    addEdge = (v, w) => {
+        if(!this.adjList.includes(v)){
+            this.addVertex(v)
+        }
+        if(!this.adjList.includes(w)){
+            this.addVertex(w)
+        }
+        this.adjList.get(v).push(w)
+    }
+}
+
+myGraph = new Graph()
+const myVertices = ['A', 'B', 'C', 'D']
+for (element of myVertices){
+    myGraph.addVertex(element)
+}
+
+myGraph.addEdge('A', 'B')
+myGraph.addEdge('A', 'C')
+myGraph.addEdge('A', 'D')
+myGraph.addEdge('C', 'D')
+myGraph.addEdge('B', 'D')
+myGraph.addEdge('B', 'c')
+
+
+console.log(myGraph.adjList)
