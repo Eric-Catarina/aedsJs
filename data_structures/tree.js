@@ -211,7 +211,9 @@ class RedBlackTree extends BinarySearchTree{
         this.root = null
     }
     insert(key){
+        
         if (this.root == null){
+            
             this.root = new RedBlackNode(key)
             this.root.color = Colors.BLACK
         }
@@ -245,7 +247,6 @@ class RedBlackTree extends BinarySearchTree{
 }
 
 myRBT = new RedBlackTree
-console.log("banana")
 
 myRBT.insert(1)
 myRBT.insert(2)
