@@ -13,9 +13,19 @@ class Graph {
         }
     }
     addEdge = (origin, destiny) => {
-            this.adjList.set(origin, destiny)
-            this.adjList.set(destiny, origin)
+        this.addVertex(origin)
+        this.addVertex(destiny)
 
+        if (this.adjList.get(origin)){
+            if (this.adjList.get(origin).includes(destiny)){   // If the adjList already have the value
+                return false
+            }
+            this.adjList.get(origin).push(destiny)
+            return true
+        }
+            this.adjList.set(origin, [])
+            this.adjList.get(origin).push(destiny)
+            return true
     }
 }
 
@@ -28,9 +38,11 @@ for (element of myVertices){
 myGraph.addEdge('A', 'B')
 myGraph.addEdge('A', 'C')
 myGraph.addEdge('A', 'D')
+myGraph.addEdge('A', 'D')
+
 myGraph.addEdge('C', 'D')
 myGraph.addEdge('B', 'D')
-myGraph.addEdge('B', 'c')
+myGraph.addEdge('B', 'C')
 
 
 console.log(myGraph.adjList)
