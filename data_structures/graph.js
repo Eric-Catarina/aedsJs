@@ -40,10 +40,16 @@ class Graph {
                 return false
             }
             this.adjList.get(origin).push(destiny)
+            if(this.isDirected == false){
+                this.addEdge(destiny, origin)
+            }
             return true
         }
         this.adjList.set(origin, [])
         this.adjList.get(origin).push(destiny)
+        if(this.isDirected == false){
+            this.addEdge(destiny, origin)
+        }
         return true
     }
 }
@@ -58,10 +64,19 @@ myGraph.addEdge('A', 'B')
 myGraph.addEdge('A', 'C')
 myGraph.addEdge('A', 'D')
 
-myGraph.addEdge('B', 'A')
-myGraph.addEdge('B', 'C')
+myGraph.addEdge('B', 'E')
+myGraph.addEdge('B', 'F')
 
 myGraph.addEdge('C', 'D')
+myGraph.addEdge('C', 'G')
+
+myGraph.addEdge('D', 'G')
+myGraph.addEdge('D', 'H')
+
+myGraph.addEdge('E', 'I')
+
+
+
 
 
 console.log(myGraph.toString())
