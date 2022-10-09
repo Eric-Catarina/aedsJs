@@ -1,6 +1,3 @@
-
-
-
 class Graph {
     constructor(isDirected = false) {
         this.isDirected = isDirected
@@ -57,6 +54,13 @@ class Graph {
     }
 }
 
+const Colors = {
+    WHITE:0,
+    GREY :1,
+    BLACK:2
+}
+
+
 myGraph = new Graph()
 const myVertices = ['A', 'B', 'C', 'D']
 for (element of myVertices) {
@@ -80,4 +84,3 @@ myGraph.addEdge('E', 'I')
 
 
 console.log(myGraph.toString())
-console.log("banana")
