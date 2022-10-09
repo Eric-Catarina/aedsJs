@@ -52,6 +52,9 @@ class Graph {
         }
         return true
     }
+    bfs =() => {
+        
+    }
 }
 
 myGraph = new Graph()
@@ -76,7 +79,5 @@ myGraph.addEdge('D', 'H')
 myGraph.addEdge('E', 'I')
 
 
-
-
-
 console.log(myGraph.toString())
+console.log("banana")
