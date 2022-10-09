@@ -1,3 +1,23 @@
+class Queue {
+    constructor(){
+        this.items = [];
+    }
+    PushStart =(...numbers) =>{
+        this.items.unshift(...numbers)
+    }
+    PopStart = () => {
+        let poppedItem = this.items[0]
+        this.items.shift()
+        return poppedItem
+    }
+
+    Peek = () => {
+        return this.items[0]
+    }
+    
+}
+
+
 class Graph {
     constructor(isDirected = false) {
         this.isDirected = isDirected
@@ -49,8 +69,44 @@ class Graph {
         }
         return true
     }
-    bfs =() => {
-        
+    
+    
+}
+const initializeColor = vertices => {
+    const color ={}
+    for(let i =0; i< vertices.length; i ++){
+        color[vertices[i]] = Colors.WHITE
+    }
+    return color
+}
+
+const breadthFirstSearch = (graph, startVertex, callback) => {
+    const vertices = graph.vertices
+    const adjList  = graph.adjList
+    const color = initializeColor(vertices)
+    const queue = new Queue
+    queue.PushStart(startVertex)
+
+    while(queue.items.length > 0){
+
+        const u = queue.PopStart()
+
+        const neighbors = adjList.get(u)
+
+        color[u] = Colors.GREY
+
+            for (const index of neighbors.keys()){
+                const w = neighbors[index]
+                if(color[w] === Colors.WHITE){
+                    color[w] = Colors.GREY
+                    queue.PushStart(w)
+                }
+                
+        }
+        color[u] = Colors.BLACK
+        if(callback){
+            callback(u)
+        }
     }
 }
 
@@ -59,6 +115,7 @@ const Colors = {
     GREY :1,
     BLACK:2
 }
+
 
 
 myGraph = new Graph()
@@ -82,5 +139,6 @@ myGraph.addEdge('D', 'H')
 
 myGraph.addEdge('E', 'I')
 
+const printVertex = (value) => console.log('Visited vertex: ' + value);
 
-console.log(myGraph.toString())
+breadthFirstSearch(myGraph, myGraph.vertices[0], printVertex)
