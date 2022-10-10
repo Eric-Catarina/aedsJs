@@ -107,6 +107,7 @@ const breadthFirstSearch = (graph, startVertex, callback) => {
         if(callback){
             callback(u)
         }
+
     }
 }
 
