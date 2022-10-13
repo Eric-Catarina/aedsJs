@@ -107,8 +107,11 @@ const breadthFirstSearch = (graph, startVertex, callback) => {
         if(callback){
             callback(u)
         }
-
     }
+}
+
+const depthFirstSearch = (graph, callback) => {
+    
 }
 
 const Colors = {
