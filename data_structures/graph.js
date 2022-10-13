@@ -121,6 +121,10 @@ const depthFirstSearch = (graph, callback) => {
     }
 }
 
+const depthFirstSearchVisit = (u, color, adjList, callback){
+    
+}
+
 const Colors = {
     WHITE:0,
     GREY :1,
