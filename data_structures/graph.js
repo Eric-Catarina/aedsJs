@@ -111,7 +111,14 @@ const breadthFirstSearch = (graph, startVertex, callback) => {
 }
 
 const depthFirstSearch = (graph, callback) => {
-    
+    const vertices = graph.vertices
+    const adjList  = graph.adjList
+    const color = initializeColor(vertices)
+    for (let i = 0; i < vertices.length; i++){
+        if(color[vertices[i]] === Colors.WHITE) {
+            depthFirstSearchVisit(vertices[i], color, adjList, callback)
+        }
+    }
 }
 
 const Colors = {
